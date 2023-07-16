@@ -1,0 +1,16 @@
+.sidebar a:link{
+    text-decoration: none;   
+}
+.sidebar a:visited {
+    color: black;
+}
+
+.sidebar ul {    
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar li{   
+    margin: 10px;
+}
