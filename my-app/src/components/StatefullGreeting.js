@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./StatefullGreeting.module.css";
 
 class StatefullGreeting extends React.Component {
     // Need to pass the props to the contructor
@@ -37,7 +38,7 @@ class StatefullGreeting extends React.Component {
     // Override the render method
     render() {
         return (
-            <div>
+            <div className={styles.greeting}>
                 <h1>{this.state.introduction} {this.props.greeting}</h1>
                 <p>Clicked {this.state.count} times</p>
                 <button onClick={() => this.increment_count()}>Increment</button>

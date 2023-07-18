@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './NavBar.module.css';
-import NavBarForm  from "./NavBarForm";
+import LoginForm from "./LoginForm";
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -9,40 +9,58 @@ class NavBar extends React.Component {
             message: "Hello Guest!",
             buttonText: "Login",
             isLoggedIn: false,
+            displayLogin: false,
         }
     }
 
     on_click() {
+        // If the user is logged in, then run signOut() method
+        // else show the LoginForm
         this.setState((prevState, prevProps) => {
-            return {
-                message: prevState.message === "Hello Guest!" ? "Welcome back , User!" : "Hello Guest!",
-                buttonText: prevState.buttonText === "Login" ? "Logout" : "Login",
-                isLoggedIn: prevState.isLoggedIn ? false : true,
+            if (this.state.isLoggedIn) {
+                this.signOut();
+            } else {
+                return {
+                    displayLogin: true,
+                }
             }
 
         })
     }
 
-    singIn = () => {
+    handleSignIn = () => {
+        this.setState({
+            buttonText: "Logout",
+            isLoggedIn: true,
+            displayLogin: false,
+            message: "Welcome, User!",
+        });
+        console.log("signIn()");
+    }
+
+    signOut = () => {
         this.setState((prevState, prevProps) => {
             return {
-                message: prevState.message === "Hello Guest!" ? "Welcome back , User!" : "Hello Guest!",
-                buttonText: prevState.buttonText === "Login" ? "Logout" : "Login",
-                isLoggedIn: prevState.isLoggedIn ? false : true,
+                message: "Goodbye User!",
+                buttonText: "Login",
+                isLoggedIn: false,
             }
-
         })
     }
-    
+
     render() {
         return (
-            <div className={styles.navbar}>
-                <h1>My Gallery</h1>
-                <ul>
-                    <li>{this.state.message}</li>
-                    <li><button onClick={()=> this.on_click()}>{this.state.buttonText}</button></li>
-                </ul>
-                <NavBarForm isLoggedIn={this.state.isLoggedIn} />
+            <div>
+                <div className={styles.navbar}>
+                    <h1>My Gallery</h1>
+                    <ul>
+                        <li>{this.state.message}</li>
+                        <li><button onClick={() => this.on_click()}>{this.state.buttonText}</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <LoginForm displayLogin={this.state.displayLogin} handleSignIn={this.handleSignIn} />
+                </div>                
             </div>
         )
     }
