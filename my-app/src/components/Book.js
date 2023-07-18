@@ -2,7 +2,7 @@ import React from "react";
 
 function Book(props){
     const book = props.book;
-    return (
+    return (        
         <div>
             <h5>{book.title}</h5>
             <p>{book.author}</p>

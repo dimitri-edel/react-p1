@@ -4,7 +4,7 @@ import imgFirm from "./img/the_firm.jpg";
 import imgTimeToKill from "./img/time_to_kill.jpg";
 import Book from "./Book";
 
-function Content(props){
+function Content(props) {
     const books = [
         {
             title: "The Client",
@@ -25,8 +25,10 @@ function Content(props){
     return (
         <div>
             {
-                books.map(book=> {
-                    return <Book book={book}/>
+                // NOTE: key is MANDATORY for react elements, since it is used by React to update 
+                // the DOM elements using AJAX, THUS it must be UNIQUE
+                books.map(book => {
+                    return <Book key={book.title + "book_item_list"} book={book} />
                 })
             }
         </div>
