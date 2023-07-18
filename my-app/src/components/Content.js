@@ -3,6 +3,8 @@ import imgClient from "./img/the_client.jpg";
 import imgFirm from "./img/the_firm.jpg";
 import imgTimeToKill from "./img/time_to_kill.jpg";
 import Book from "./Book";
+import postsData from "./posts.json";
+import Post from "./Post";
 
 function Content(props) {
     const books = [
@@ -29,8 +31,14 @@ function Content(props) {
                 // the DOM elements using AJAX, THUS it must be UNIQUE
                 books.map(book => {
                     return <Book key={book.title + "book_item_list"} book={book} />
+                })       
+            }
+            {
+                postsData["savedPosts"].map(post=>{
+                    return <Post key={post.title} postData={post} />
                 })
             }
+
         </div>
     )
 }

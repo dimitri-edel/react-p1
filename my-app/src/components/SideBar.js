@@ -6,13 +6,13 @@ function SideBar(props) {
     <div  className={styles.sidebar}>
         <ul>
             <li>
-                <a href="#">{props.photos}</a>
+                <a href="#." target="_blank">{props.photos}</a>
             </li>
             <li>
-                <a href="#">{props.illustrations}</a>
+                <a href="#." target="_blank">{props.illustrations}</a>
             </li>
             <li>
-                <a href="#">{props.paintings}</a>
+                <a href="#." target="_blank">{props.paintings}</a>
             </li>
         </ul>
     </div>
