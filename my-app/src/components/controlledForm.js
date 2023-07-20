@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import importedNames from "../names"
 
 export class ControlledForm extends Component {
     constructor(props) {
@@ -8,6 +9,7 @@ export class ControlledForm extends Component {
             name: "",
             category: "general",
             comment: "",
+            names: importedNames,
         }
     }
     // Use JavaScript feature called computed field property names
@@ -18,10 +20,15 @@ export class ControlledForm extends Component {
             [name]: value
         })
     }
-    // Designated event-handler
+    // Designated event-handler, filter the search results
     handleSearchChange = (event) => {
+        let inputText = event.target.value.toLowerCase();
+        let filteredNames = importedNames.filter(name=>{
+            return name.toLocaleLowerCase().includes(inputText)
+        })
         this.setState({
-            name: event.target.value
+            name: event.target.value,
+            names: filteredNames,
         })
     }
     // Designated event-handler
@@ -49,7 +56,7 @@ export class ControlledForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label htmlFor="id-search">Search:</label>
-                        <input tpye="text" id="id-search" name="name" value={this.state.name} onChange={this.handleChange} />
+                        <input tpye="text" id="id-search" name="name" value={this.state.name} onChange={this.handleSearchChange} />
                     </div>
                     <div>
                         <label htmlFor="id-category">Select Category:</label>
@@ -64,14 +71,17 @@ export class ControlledForm extends Component {
                     </div>
                     <input type="submit" value="submit"/>
                 </form>
-                <div>
-                    <h5>You tped</h5>
-                    <h6>Inquiry:</h6>
-                    <p>{this.state.name}</p>
-                    <h6>Category:</h6>
-                    <p>{this.state.category}</p>
-                    <h6>comment:</h6>
-                    <p>{this.state.comment}</p>
+                <div>                    
+                    <h3>Names found: {this.state.names.length}</h3>
+                    <div>
+                        {
+                            this.state.names.map(name=>{
+                                return (
+                                    <p key={name}>{name}</p>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         )
