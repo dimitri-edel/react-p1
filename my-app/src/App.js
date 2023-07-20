@@ -4,7 +4,8 @@ import SideBar from './components/SideBar';
 // import StatefullGreeting from './components/StatefullGreeting';
 import NavBar from "./components/NavBar";
 // import Content from "./components/Content";
-import ControlledForm from './components/controlledForm';
+// import ControlledForm from './components/controlledForm';
+import Content from "./components/ContentClass"
 
 function App() {  
 
@@ -14,7 +15,8 @@ function App() {
         <SideBar photos="Photos" illustrations="Illustrations" paintings="Paintings"/>
         {/* <StatefullGreeting greeting="Hello" />
         <Content /> */}
-        <ControlledForm />
+        {/* <ControlledForm /> */}
+        <Content />
     </div>
   );
 }

@@ -23,7 +23,7 @@ function Content(props) {
             author: "John Grisham",
             image: imgTimeToKill
         }
-    ];
+    ]
     return (
         <div>
             {
